@@ -1,10 +1,9 @@
 const express=require('express')
 const app=express()
+const dotenv=require('dotenv')
+dotenv.config()
+require('./db/db').db()
 
-
-app.get('/',(req,res)=>{
-    res.send('Hello World')
-})
 
 app.listen(3000,(eror)=>{
     if(eror){
