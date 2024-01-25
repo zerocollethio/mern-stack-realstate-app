@@ -1,6 +1,7 @@
 const User  = require("../models/user.models")
 const bcrypt=require("bcryptjs")
-const signup=async (req,res)=>{
+const errorHandler=require("../utils/error")
+const signup=async (req,res,next)=>{
 const {userName,email,password} = req.body
 
 
@@ -13,7 +14,7 @@ const newUser = new User({
     await newUser.save()
     res.status(201).json("new user created sucessfully")
 }catch(err){
-res.status(500).json(err.message)
+next(err)
 }
 }
 
